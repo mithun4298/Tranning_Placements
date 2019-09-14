@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{%block title%}
+Info
+{% endblock %}
+
+{% block content %}
+<h1>Current companys are</h1>
+{% for data in data %}
+<div class="jumbotron container">
+  <div class="row">
+    <img src="{{data.i_companyimg.url}}" width="100px" height="100px">
+    <h1> {{data.i_companyname}} </h1>
+  </div> <br>
+  job type : {{data.i_jobtype}} <br>
+  job locations : {{data.i_joblocation}} <br>
+  skills require : {{data.i_skills}} <br>
+  programming language knowledge : {{data.i_proglang}} <br>
+  salary(in per annum) : {{data.i_jobsalary}} <br>
+  job description : {{data.i_jobdescriptiion}} <br>
+  For more information visit : <a href={{data.i_url}}">click here</a>
+</div>
+{% endfor %}
+{% endblock %}

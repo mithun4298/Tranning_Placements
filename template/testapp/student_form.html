@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{%block title%}
+Student form
+{% endblock %}
+
+{% block content %}
+<div class="container jumbotron">
+{% if messages %}
+    {% for message in messages%}
+   <h5> <p class="text-success">  {{message}}  </p>  </h5>
+    {% endfor %}
+{% endif %}
+  <form method="POST" action="{% url 'student_form' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="branchname">Branch name</label>
+      <input type="text" class="form-control" id="branchname" name='branch' aria-describedby="branchnamee"
+        placeholder="Branch">
+      <small id="branchname" class="form-text text-muted">carefully fill the branch name</small>
+    </div>
+    <div class="form-group">
+      <label for="semester">Semester</label>
+      <select required name="semester" class="btn btn-dark">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+      </select>
+      <small id="semester" class="form-text text-muted">select it every time</small>
+    </div>
+    <div class="form-group">
+      <label for="temthmarks">Tenth marks</label>
+      <input type="text" class="form-control" id="temthmarks" placeholder="tenthmarks" name="tenthmarks">
+    </div>
+
+    <div class="form-group">
+      <label for="twelthmarks">Twelth marks</label>
+      <input type="text" class="form-control" id="twelthmarks" name='twelthmarks' aria-describedby="twelthmarkss"
+        placeholder="twelthmarks">
+    </div>
+    <div class="form-group">
+      <label for="currentcgpa">Total cgpa</label>
+      <input type="text" class="form-control" id="currentcgpa" placeholder="Total current cgpa" name='currentcgpa'>
+    </div>
+
+    <div class="form-group">
+      <label for="skill">Skills</label>
+      <input type="text" class="form-control" id="skill" name='skills' aria-describedby="skills" placeholder="skills">
+      <small id="skill" class="form-text text-muted">skills are seperated with comma(" , ")</small>
+
+    </div>
+    <div class="form-group">
+      <label for="proglangg">Programming language</label>
+      <input type="text" class="form-control" id="proglangg" name='proglang' placeholder="Programming language">
+      <small id="proglangg" class="form-text text-muted">seperated with comma(" , ")</small>
+
+    </div>
+    <div class="form-group">
+      <label for="mobno">ener mobile no</label>
+      <input type="text" class="form-control" id="mobno" placeholder="Mobile number" name='mobno'>
+      <small id="mobno" class="form-text text-muted">be careful !! messages will be sent on to this no. also provide
+        country code along with mob no.</small>
+
+    </div>
+
+    <div class="form-group">
+      <label for="resume11">Resume 1</label>
+      <input type="file" class="form-control" id="resume11" name='resume1'>
+    </div>
+    <div class="form-group">
+      <label for="resume22">Resume 2</label>
+      <input type="file" class="form-control" id="resume22" name='resume2'>
+    </div>
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
+      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+{% endblock %}

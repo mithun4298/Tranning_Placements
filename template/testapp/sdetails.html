@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+
+{%block title%}
+your details
+{% endblock %}
+
+{% block content %}
+<br>
+<div class="container jumbotron">
+{% if messages %}
+    {% for message in messages%}
+   <h5> <p class="text-success">  {{message}}  </p>  </h5>
+    {% endfor %}
+{% endif %}
+    {% for student in student %}
+    Name:{{student.s_name}} <br>
+    Branch:{{student.s_branch}} <br>
+    Semester : {{student.s_semester}}<br>
+    Tenth marks : {{student.s_tenthmarks}}<br>
+    Twelth marks : {{student.s_twelthmarks}}<br>
+    Current Cgpa : {{student.s_currentcgpa}}<br>
+    Skills : {{student.s_skills}}<br>
+    Programming Language : {{student.s_proglang}}<br>
+    Mobile Number : {{ student.s_mobno }}<br>
+    <a href="{{student.s_resume1.url}}">First resume</a> <br>
+    <a href="{{student.s_resume2.url}}">Second resume</a>
+    <a class="nav-link btn btn-dark" href="{% url 'student_form' %}">Edit</a>
+    {% endfor %}
+</div>
+{% endblock %}

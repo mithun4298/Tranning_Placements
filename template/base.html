@@ -1,0 +1,120 @@
+<!DOCTYPE <!DOCTYPE html>
+{% load staticfiles %}
+<html>
+
+<head>
+  <meta charset="utf-8" dir="ltr">
+  <title>
+    {% block title %}
+    {% endblock %}
+  </title>
+  <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+  <style>
+    html,
+    body {
+      height: 100%;
+
+    }
+
+    .first {
+      padding-top: 140px;
+      height: 100vh;
+      min-height: 400px;
+      background-size: cover;
+      background-image:url('{% static "images/navback.jpg" %}');
+    }
+
+    .affix {
+      -webkit-transition: padding 0.2s ease-out;
+      -moz-transition: padding 0.2s ease-out;
+      -o-transition: padding 0.2s ease-out;
+      transition: padding 0.2s ease-out;
+
+    }
+
+    .affix-top {
+      /* navbar style at top */
+      background: transparent;
+      border-color: transparent;
+      padding: 15px;
+      -webkit-transition: all 0.5s ease;
+      -moz-transition: all 0.5s ease;
+      -o-transition: all 0.5s ease;
+      transition: all 0.5s ease;
+    }
+
+    .affix-top .nav>li>a {
+      color: #000;
+    }
+
+    .affix-top .navbar-collapse {
+      border-color: transparent;
+      box-shadow: initial;
+    }
+
+    section {
+      height: calc(90% - 50px);
+      height: 90vh;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark  static-top" ; style="background-color: #3E14A7;>
+    <div class=" container">
+    <a class="navbar-brand" href="{% url 'home' %}">
+      <img src="{% static 'images/navback.gif' %}" class = "rounded-circle" ; height=50px; width=50px>
+    </a>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link btn btn-dark" href="{% url 'info' %}">Info </a>
+        </li>&nbsp;
+        <li class="nav-item">
+          <a class="nav-link btn btn-dark" href="{% url 'about' %}">About</a>
+        </li> &nbsp;
+        {% if user.is_authenticated == False %}
+        <li class="nav-item">
+          <a class="nav-link btn btn-dark" href="{% url 'student_form' %}">Form</a>
+        </li> &nbsp;
+        <li class="nav-item">
+          <a class="nav-link btn btn-dark" href="{% url 'login' %}">Login</a>
+        </li> &nbsp;
+        {% else %}
+        {% if user.is_staff %}
+        <li class="nav-item">
+          <a class="nav-link btn btn-dark" href="{% url 'selectstudent' %}">Student select</a>
+        </li> &nbsp;
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link btn btn-dark" href="{% url 'sdetails' %}">your information</a>
+        </li> &nbsp;
+        {% endif %}
+        <li class="nav-item">
+          <a class="nav-link btn btn-dark" href="{% url 'logout' %}">Logout</a>
+
+        </li> &nbsp;
+        {% endif %}&nbsp;
+      </ul>
+    </div>
+    </div>
+  </nav>
+  <div class="row container btn">
+  {% if user.is_authenticated %}
+  <h5>Hello</h5> &nbsp;
+  {{user.first_name}}  {{user.last_name}}
+{% endif %}
+
+</div>
+  {% block content %}
+ 
+  {% endblock %}
+  <!-- FOOTER -->
+  <footer class="container">
+    <p class="float-right"><a href="#">Back to top</a></p>
+    <p>&copy; 2017-2018 Company BKS <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+  </footer>
+  <!-- FOOTER -->
+</body>
+
+</html>

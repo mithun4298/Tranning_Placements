@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{%block title%}
+Home
+{% endblock %}
+
+{% block content %}
+<div class="jumbotron container rounded"
+    style="background-image : url('{% static "images/jumbbackk.jpg" %}'); background-repeat: no-repeat; height : 100%; width : 100% ;background-size: auto 100%; ">
+
+        
+        {% if user.is_authenticated == False %}
+        <div class="text-center">
+          <h4>  <p class="text-centre">Are you a student?</p>   </h4>
+            <a href="{% url 'login' %}" class="btn btn-primary btn-lg active text-centre" role="button"
+                aria-pressed="true">Login now
+            </a>
+            <h1 class="text-right">Failure will never overtake me <br> if my determination to succeed is strong enough.</h1>
+        </div>
+        {% endif %}
+   
+
+</div>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+select student
+{% endblock %}
+
+{% block content %}
+<div class="container jumbotron">
+
+    <form action="{% url 'selectstudent' %}" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="language">Enter language and skills needed</label>
+            <input type="text" class="form-control" id="language" name='lang' aria-describedby="language"
+                placeholder="All skills and languages">
+            <small id="language" class="form-text text-muted">Each are seperated with comma (" , ")</small>
+        </div>
+        <button type="submit" class="btn btn-primary">Get List</button>
+    </form>
+</div>
+<div class="container jumbotron">
+    {% if messages %}
+    {% for message in messages%}
+   <h5> <p class="text-danger"> Search result for:  {{message}}  </p>  </h5>
+    {% endfor %}
+{% endif %}
+
+    <table class="table table-dark">
+        <tr>
+            <th>Username</th>
+            <th>Name</th>
+            <th>Branch</th>
+            <th>Semester</th>
+            <th>Tenth Marks</th>
+            <th>Twelth Marks</th>
+            <th>Current Cgpa</th>
+            <th>Mobile No</th>
+            <th>Resume</th>
+        </tr>
+
+        {% for username,name,branch,semester,tenthmarks,twelthmarks,currentcgpa,mobno,resume in myzip %}
+        <tr>
+            <td>{{username}}</td>
+            <td>{{name}}</td>
+            <td>{{branch}}</td>
+            <td>{{semester}}</td>
+            <td>{{tenthmarks}}</td>
+            <td>{{twelthmarks}}</td>
+            <td>{{currentcgpa}}</td>
+            <td>{{mobno}}</td>
+            <td><a href="{{resume.url}}">Resume</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,9 @@
+
+<form id = "logout" method="POSt" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <input type="hidden">
+          </form>
+
+
+
+          javascript:{document.getElementByID('logout').submit()}
